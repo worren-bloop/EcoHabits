@@ -1,0 +1,19 @@
+# User-uploaded media (keep folder with .gitkeep)
+uploads/*
+!uploads/.gitkeep
+
+# Large login background (GitHub max ~100MB; keep file locally in this folder)
+assets/media/*.mp4
+!assets/media/.gitkeep
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# PHP
+*.log
