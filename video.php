@@ -1,4 +1,10 @@
-﻿<?php include __DIR__ . '/includes/cookie_consent.php'; ?>
+<?php
+include __DIR__ . '/includes/env.php';
+load_project_env(__DIR__ . '/.env');
+
+$youtubeApiKey = getenv('YOUTUBE_API_KEY') ?: '';
+?>
+<?php include __DIR__ . '/includes/cookie_consent.php'; ?>
 <?php include __DIR__ . '/includes/topbar.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -344,7 +350,7 @@
     // YouTube API implementation with proper pagination
 
     const config = {
-        apiKey: 'AIzaSyAqF6TXRk6kwpKayHSrPDXZ8fSUq7KzMlY',
+        apiKey: <?php echo json_encode($youtubeApiKey, JSON_UNESCAPED_SLASHES); ?>,
         maxResults: 6,
         defaultQuery: 'climate action and climate change'
     };

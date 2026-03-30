@@ -1,4 +1,10 @@
-﻿<?php include __DIR__ . '/includes/cookie_consent.php'; ?>
+<?php
+include __DIR__ . '/includes/env.php';
+load_project_env(__DIR__ . '/.env');
+
+$newsApiKey = getenv('NEWS_API_KEY') ?: '';
+?>
+<?php include __DIR__ . '/includes/cookie_consent.php'; ?>
 <?php include __DIR__ . '/includes/topbar.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -316,15 +322,16 @@
         const config = {
             articlesPerPage: 6,
             maxRetries: 3,
-            timeout: 10000
+            timeout: 10000,
+            newsApiKey: <?php echo json_encode($newsApiKey, JSON_UNESCAPED_SLASHES); ?>
         };
 
         // Multiple news sources for unlimited feed
         const newsSources = [
             {
                 name: 'NewsAPI',
-                apiKey: 'da78c40305224b958d82c149259311b0',
-                getUrl: (page) => `https://newsapi.org/v2/everything?q="climate change" OR "global warming" OR "carbon emissions" OR "renewable energy" OR "climate policy" OR "climate adaptation" OR "SDG 13"&language=en&sortBy=publishedAt&pageSize=${config.articlesPerPage}&page=${page}&apiKey=da78c40305224b958d82c149259311b0`
+                apiKey: config.newsApiKey,
+                getUrl: (page) => `https://newsapi.org/v2/everything?q="climate change" OR "global warming" OR "carbon emissions" OR "renewable energy" OR "climate policy" OR "climate adaptation" OR "SDG 13"&language=en&sortBy=publishedAt&pageSize=${config.articlesPerPage}&page=${page}&apiKey=${config.newsApiKey}`
             },
             {
                 name: 'Guardian',

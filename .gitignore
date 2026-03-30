@@ -1,10 +1,15 @@
-# User-uploaded media (keep folder with .gitkeep)
+﻿# User-uploaded media (keep folder with .gitkeep)
 uploads/*
 !uploads/.gitkeep
 
 # Large login background (GitHub max ~100MB; keep file locally in this folder)
 assets/media/*.mp4
 !assets/media/.gitkeep
+
+# Environment secrets
+.env
+.env.*
+!.env.example
 
 # OS / editor
 Thumbs.db
